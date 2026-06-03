@@ -10,7 +10,7 @@ public class AppDbContext : DbContext{
         
     }
 
-    DbSet<Usuario> Usuarios { get; set; }
-    DbSet<Ideia> Ideias { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<Ideia> Ideias { get; set; }
     
 }
