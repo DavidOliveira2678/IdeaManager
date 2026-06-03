@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using backend.Models;
 
 namespace backend.Data;
 
@@ -8,5 +9,8 @@ public class AppDbContext : DbContext{
     {
         
     }
+
+    DbSet<Usuario> Usuarios { get; set; }
+    DbSet<Ideia> Ideias { get; set; }
     
 }
