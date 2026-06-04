@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { cadastrar as cadastrarUsuario } from '../services/usuarioService';
+import './Cadastro.css';
 
 export default function Cadastro(){
 
@@ -29,57 +30,58 @@ export default function Cadastro(){
     }
 
     return(
-        <>
-            <form action="" method="post">
-                <label htmlFor="nome-cadastro-input">Nome de usuário:</label>
-                <input
-                type="text"
-                name="nome-cadastro-input"
-                id="nome-cadastro-input"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-                />
+        <div className="cadastro-container">
+            <div className="cadastro-box">
+                
+                <h2>Criar conta</h2>
+                <div className="cadastro-field">
 
-                <label htmlFor="email-cadastro-input">Seu e-mail:</label>
-                <input
-                type="email"
-                name="email-cadastro-input"
-                id="email-cadastro-input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                />
+                    <label>Nome</label>
+                    <input
+                    type="text"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                    />
 
-                <label htmlFor="nascimento-cadastro-input">Sua data de nascimento:</label>
-                <input
-                type="date"
-                name="nascimento-cadastro-input"
-                id="nascimento-cadastro-input"
-                value={dataNascimento}
-                onChange={(e) => setDataNascimento(e.target.value)}
-                />
-
-                <label htmlFor="senha-cadastro-input">Sua senha:</label>
-                <input
-                type="password"
-                name="senha-cadastro-input"
-                id="senha-cadastro-input"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                />
-
-                <label htmlFor="senha-cadastro-input">Confirme sua senha:</label>
-                <input
-                type="password"
-                name="confirmaSenha-cadastro-input"
-                id="confirmaSenha-cadastro-input"
-                value={senhaConfirmacao}
-                onChange={(e) => setSenhaConfirmacao(e.target.value)}
-                />
-            </form>
-
-            <p onClick={cadastrar} id="cadastro-button">Realizar cadastro!</p>
-            <span>Já possui uma conta? <a onClick={() => navigate("/")}>Faça login!</a></span>
-        </>
+                </div>
+                <div className="cadastro-field">
+                    <label>Email</label>
+                    <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div className="cadastro-field">
+                    <label>Data de nascimento</label>
+                    <input
+                    type="date"
+                    value={dataNascimento}
+                    onChange={(e) => setDataNascimento(e.target.value)}
+                    />
+                </div>
+                <div className="cadastro-field">
+                    <label>Senha</label>
+                    <input
+                    type="password"
+                    value={senha}
+                    onChange={(e) => setSenha(e.target.value)}
+                    />
+                </div>
+                <div className="cadastro-field">
+                    <label>Confirme a senha</label>
+                    <input
+                    type="password"
+                    value={senhaConfirmacao}
+                    onChange={(e) => setSenhaConfirmacao(e.target.value)}
+                    />
+                </div>
+                <button className="cadastro-btn" onClick={cadastrar}>Criar conta</button>
+                <p className="cadastro-footer">
+                    Já possui conta? <a onClick={() => navigate("/")}>Faça login</a>
+                </p>
+            </div>
+        </div>
     )
 
 }

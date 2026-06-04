@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { atualizarIdeia as atualizar, buscarIdeia as buscar } from "../services/ideiaService";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import './FormIdeia.css';
 
 export default function EditarIdeia(){
     
@@ -35,58 +36,65 @@ export default function EditarIdeia(){
         try{
             const dados = { titulo, descricao, categoria, favoritada };
             await atualizar(id, dados);
-            alert("Ideia criada com sucesso!");
+            alert("Ideia editada com sucesso!");
             navigate("/home");
         } catch (error){
             alert(error.response?.data?.erro || "Erro ao criar ideia");
         }
         
     }
-    
+
     return(
-        <>
-            <p onClick={() => navigate("/home")}>Cancelar</p>
-            <form action="" method="put">
-                
-                <label htmlFor="titulo-novaIdeia-input">Digite o novo título da sua ideia!</label>
-                <input
-                type="text"
-                name="titulo-novaIdeia-input"
-                id="titulo-novaIdeia-input"
-                value={titulo}
-                onChange={(e) => setTitulo(e.target.value)}
-                />
+        <div className="form-container">
+            <div className="form-box">
+                <h2>Editar ideia</h2>
+                <div className="form-field">
 
-                <label htmlFor="descricao-novaIdeia-input">Digite a nova descrição da sua ideia</label>
-                <textarea
-                id="descricao-novaIdeia-input"
-                value={descricao}
-                onChange={(e) => setDescricao(e.target.value)}
-                />
-                
-                <label htmlFor="categoria-novaIdeia">Selecione a nova categoria da sua ideia</label>
-                <select
-                value={categoria}
-                onChange={(e) => setCategoria(e.target.value)}
-                id="categoria-novaIdeia">
-                    <option value={0}>Jogos</option>
-                    <option value={1}>Livros</option>
-                    <option value={2}>Receitas</option>
-                    <option value={3}>Dia a dia</option>
-                    <option value={4}>Outro</option>
-                </select>
+                    <label>Título</label>
+                    <input
+                    type="text"
+                    value={titulo}
+                    onChange={(e) => setTitulo(e.target.value)}
+                    />
 
-                <label htmlFor="favoritada-input">Favoritar ideia?</label>
-                <input
+                </div>
+                <div className="form-field">
+
+                    <label>Descrição</label>
+                    <textarea value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+
+                </div>
+                <div className="form-field">
+
+                    <label>Categoria</label>
+                    <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                        <option value={0}>Jogos</option>
+                        <option value={1}>Livros</option>
+                        <option value={2}>Receitas</option>
+                        <option value={3}>Dia a dia</option>
+                        <option value={4}>Outro</option>
+                    </select>
+
+                </div>
+                <div className="form-checkbox">
+
+                    <input
                     type="checkbox"
                     id="favoritada-input"
                     checked={favoritada}
                     onChange={(e) => setFavoritada(e.target.checked)}
-                />
-            </form>
+                    />
+                    <label htmlFor="favoritada-input">Favoritar ideia</label>
 
-            <p id="criar-ideia-btn" onClick={editarIdeia}>Finalizar edição!</p>
-        </>
+                </div>
+                <div className="form-actions">
+
+                    <button className="btn-secondary" onClick={() => navigate("/home")}>Cancelar</button>
+                    <button className="btn-primary" onClick={editarIdeia}>Salvar alterações</button>
+                    
+                </div>
+            </div>
+        </div>
     )
     
 }

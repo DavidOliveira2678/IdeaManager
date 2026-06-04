@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { criarIdeia as criar } from "../services/ideiaService";
 import { useNavigate } from "react-router-dom";
+import './FormIdeia.css';
 
 export default function NovaIdeia(){
 
@@ -26,43 +27,50 @@ export default function NovaIdeia(){
         }
         
     }
-    
+
     return(
-        <>
-            <p onClick={() => navigate("/home")}>Voltar</p>
-            <form action="" method="post">
-                
-                <label htmlFor="titulo-novaIdeia-input">Digite o título da sua nova ideia!</label>
-                <input
-                type="text"
-                name="titulo-novaIdeia-input"
-                id="titulo-novaIdeia-input"
-                value={titulo}
-                onChange={(e) => setTitulo(e.target.value)}
-                />
+        <div className="form-container">
+            <div className="form-box">
 
-                <label htmlFor="descricao-novaIdeia-input">Digite a descrição da sua ideia</label>
-                <textarea
-                id="descricao-novaIdeia-input"
-                value={descricao}
-                onChange={(e) => setDescricao(e.target.value)}
-                />
-                
-                <label htmlFor="categoria-novaIdeia">Selecione a categoria da sua ideia</label>
-                <select
-                value={categoria}
-                onChange={(e) => setCategoria(e.target.value)}
-                id="categoria-novaIdeia">
-                    <option value={0}>Jogos</option>
-                    <option value={1}>Livros</option>
-                    <option value={2}>Receitas</option>
-                    <option value={3}>Dia a dia</option>
-                    <option value={4}>Outro</option>
-                </select>
-            </form>
+                <h2>Nova ideia</h2>
 
-            <p id="criar-ideia-btn" onClick={criarIdeia}>Criar ideia!</p>
-        </>
+                <div className="form-field">
+
+                    <label>Título</label>
+                    <input
+                    type="text"
+                    value={titulo}
+                    onChange={(e) => setTitulo(e.target.value)}
+                    />
+
+                </div>
+                <div className="form-field">
+
+                    <label>Descrição</label>
+                    <textarea
+                    value={descricao}
+                    onChange={(e) => setDescricao(e.target.value)}
+                    />
+
+                </div>
+                <div className="form-field">
+
+                    <label>Categoria</label>
+                    <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                        <option value={0}>Jogos</option>
+                        <option value={1}>Livros</option>
+                        <option value={2}>Receitas</option>
+                        <option value={3}>Dia a dia</option>
+                        <option value={4}>Outro</option>
+                    </select>
+                    
+                </div>
+                <div className="form-actions">
+                    <button className="btn-secondary" onClick={() => navigate("/home")}>Cancelar</button>
+                    <button className="btn-primary" onClick={criarIdeia}>Criar ideia</button>
+                </div>
+            </div>
+        </div>
     )
     
 }

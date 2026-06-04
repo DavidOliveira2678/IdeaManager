@@ -4,10 +4,12 @@ import Home from './pages/Home';
 import Cadastro from './pages/Cadastro';
 import NovaIdeia from './pages/NovaIdeia';
 import EditarIdeia from './pages/EditarIdeia';
+import Header from './components/Header.jsx';
 
 function App() {
   return (
     <BrowserRouter>
+    <Header />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />

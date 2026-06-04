@@ -1,0 +1,101 @@
+.home-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 16px;
+}
+
+.home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.home-header h1 {
+    font-size: 24px;
+    color: var(--text);
+}
+
+.home-header button {
+    background: var(--primary);
+    color: white;
+    padding: 10px 20px;
+}
+
+.home-header button:hover {
+    background: var(--primary-hover);
+}
+
+.home-empty {
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 64px;
+    font-size: 16px;
+}
+
+.ideia-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.ideia-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.ideia-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.ideia-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.ideia-categoria {
+    background: #FEF3C7;
+    color: #92400E;
+    padding: 2px 10px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.ideia-favoritada {
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.ideia-card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-editar {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-editar:hover {
+    background: var(--primary-hover);
+}
+
+.btn-deletar {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-deletar:hover {
+    background: var(--danger-hover);
+}

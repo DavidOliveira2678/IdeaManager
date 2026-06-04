@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login as logarUsuario } from '../services/usuarioService';
+import './Login.css';
 
 export default function Login(){
 
@@ -21,29 +22,36 @@ export default function Login(){
     }
     
     return(
-        <>
-            <form action="" method="post">
-                <label htmlFor="login-email-input">Seu email:</label>
-                <input 
-                type="email"
-                name="login-email-input"
-                id="login-email-input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                />
+        <div className="login-container">
+            <div className="login-box">
+                <h2>Entrar</h2>
+                <div className="login-field">
 
-                <label htmlFor="login-senha-input">Sua senha:</label>
-                <input
-                type="password"
-                name="login-senha-input"
-                id="login-senha-input"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                />
-            </form>
+                    <label htmlFor="login-email-input">Email</label>
+                    <input
+                    type="email"
+                    id="login-email-input"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    />
 
-            <p onClick={logar} id="login-button">Realizar login!</p>
-            <span>Não possui uma conta? <a onClick={() => navigate("/cadastro")}>Cadastre-se!</a></span>
-        </>
+                </div>
+                <div className="login-field">
+
+                    <label htmlFor="login-senha-input">Senha</label>
+                    <input
+                    type="password"
+                    id="login-senha-input"
+                    value={senha}
+                    onChange={(e) => setSenha(e.target.value)}
+                    />
+                    
+                </div>
+                <button className="login-btn" onClick={logar}>Entrar</button>
+                <p className="login-footer">
+                    Não possui conta? <a onClick={() => navigate("/cadastro")}>Cadastre-se</a>
+                </p>
+            </div>
+        </div>
     )
 }

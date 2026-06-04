@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { listarIdeias, deletarIdeia } from '../services/ideiaService';
+import './Home.css';
 
 export default function Home(){
     const navigate = useNavigate();
@@ -29,24 +30,35 @@ export default function Home(){
     }, []);
 
     return(
-    <>
-        <h1>Suas ideias, {usuario?.nome}</h1>
-        
-        <button onClick={() => navigate("/nova-ideia")}>+ Nova ideia</button>
+        <div className="home-container">
+            <div className="home-header">
+                <h1>Suas ideias</h1>
+                <button onClick={() => navigate("/nova-ideia")}>+ Nova ideia</button>
+            </div>
 
-        {ideias.length === 0 
-            ? <p>Nenhuma ideia cadastrada ainda.</p>
-            : ideias.map(ideia => (
-                <div key={ideia.id}>
-                    <h3>{ideia.titulo}</h3>
-                    <p>{ideia.descricao}</p>
-                    <span>Categoria: {categorias[ideia.categoria]}</span>
-                    <span>{ideia.estaFavoritada ? "Favoritada" : ""}</span>
-                    <button onClick={() => navigate(`/editar-ideia/${ideia.id}`)}>Editar</button>
-                    <button onClick={() => deletar(ideia.id)}>Deletar</button>
-                </div>
-            ))
-        }
-    </>
-)
+            {ideias.length === 0
+                ? <p className="home-empty">Nenhuma ideia cadastrada ainda. Crie a sua primeira!</p>
+                : ideias.map(ideia => (
+                    <div key={ideia.id} className="ideia-card">
+
+                        <h3>{ideia.titulo}</h3>
+                        <p>{ideia.descricao}</p>
+                        <div className="ideia-card-meta">
+
+                            <span className="ideia-categoria">{categorias[ideia.categoria]}</span>
+                            {ideia.estaFavoritada && <span className="ideia-favoritada">Favoritada</span>}
+
+                        </div>
+                        <div className="ideia-card-actions">
+                            
+                            <button className="btn-editar" onClick={() => navigate(`/editar-ideia/${ideia.id}`)}>Editar</button>
+                            <button className="btn-deletar" onClick={() => deletar(ideia.id)}>Deletar</button>
+                            
+                        </div>
+
+                    </div>
+                ))
+            }
+        </div>
+    )
 }
