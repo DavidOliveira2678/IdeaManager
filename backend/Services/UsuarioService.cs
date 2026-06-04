@@ -43,6 +43,11 @@ public class UsuarioService : IUsuarioService
 
     public async Task<UsuarioResponseDto> CriarUsuario(UsuarioCreateDto usuario)
     {
+
+        var usuarioExistente = await _usuarioRepo.BuscarUsuarioPorEmail(usuario.Email);
+
+        if(usuarioExistente != null) throw new BusinessException("Este e-mail já está em uso.");
+        
         var usuarioEntity = new Usuario
         {
             Nome = usuario.Nome,
