@@ -2,6 +2,7 @@ using backend.Data;
 using backend.Repositories;
 using backend.Services;
 using Microsoft.EntityFrameworkCore;
+using backend.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,13 +23,27 @@ builder.Services.AddScoped<IIdeaRepository, IdeaRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IIdeiaService, IdeiaService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("FrontendPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseCors("FrontendPolicy");
 
 app.UseHttpsRedirection();
 app.MapControllers();
