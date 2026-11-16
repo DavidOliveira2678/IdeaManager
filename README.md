@@ -28,7 +28,7 @@ Aplicação fullstack para gerenciamento pessoal de ideias. Permite cadastrar, l
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git
+git clone https://github.com/DavidOliveira2678/IdeaManager.git
 cd IdeaManager
 ```
 
